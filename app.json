@@ -1,5 +1,5 @@
 {
-  "name": "Twilio Automated Survey in Node.js",
+  "name": "Twilio: Automated Survey",
   "description": "This sample application powers automated surveys via voice calls and SMS.",
   "keywords": [
     "twilio",
