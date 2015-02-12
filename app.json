@@ -1,0 +1,19 @@
+{
+  "name": "Twilio Automated Survey in Node.js",
+  "description": "This sample application powers automated surveys via voice calls and SMS.",
+  "keywords": [
+    "twilio",
+    "node.js",
+    "mongodb",
+    "mongoose",
+    "express",
+    "surveys"
+  ],
+  "website": "https://www.twilio.com/docs/howto/walkthrough/automated-survey/node/express",
+  "repository": "https://github.com/TwilioDevEd/survey-node",
+  "logo": "https://s3.amazonaws.com/deved/twilio-logo.png",
+  "success_url": "/",
+  "addons": [
+    "mongolab"
+  ]
+}
