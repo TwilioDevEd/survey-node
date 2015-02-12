@@ -49,7 +49,7 @@ $(function() {
     // poor man's html template for a response table row
     function row(response) {
         var tpl = '<tr><td>';
-        tpl += response.answer+'</td>';
+        tpl += response.answer || 'pending...' + '</td>';
         if (response.recordingUrl) {
             tpl += '<td><a target="_blank" href="'
                 + response.recordingUrl 
