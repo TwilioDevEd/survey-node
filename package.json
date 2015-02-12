@@ -1,0 +1,32 @@
+{
+  "name": "survey-node",
+  "version": "1.0.0",
+  "description": "an automated survey conducted via voice and sms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TwilioDevEd/survey-node"
+  },
+  "keywords": [
+    "twilio",
+    "express",
+    "survey"
+  ],
+  "author": "Kevin Whinnery",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TwilioDevEd/survey-node/issues"
+  },
+  "homepage": "https://github.com/TwilioDevEd/survey-node",
+  "dependencies": {
+    "body-parser": "^1.11.0",
+    "express": "^4.11.2",
+    "jade": "^1.9.2",
+    "mongoose": "^3.8.23",
+    "morgan": "^1.5.1",
+    "twilio": "^1.10.0"
+  }
+}

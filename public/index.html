@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automated Surveys</title>
+    <link rel="shortcut icon" 
+        href="//twilio.com/bundles/marketing/img/favicons/favicon.ico">
+    <link rel="apple-touch-icon" 
+        href="//twilio.com/bundles/marketing/img/favicons/favicon_57.png">
+    <link rel="apple-touch-icon" sizes="72x72" 
+        href="//twilio.com//bundles/marketing/img/favicons/favicon_72.png">
+    <link rel="apple-touch-icon" sizes="114x114" 
+        href="//twilio.com/bundles/marketing/img/favicons/favicon_114.png">
+
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet"
+        href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" 
+        href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<!-- App Layout -->
+<section id="main" class="container">
+    <h1>Automated Survey Results</h1>
+    <p>
+        Want to display the results of your awesome Twilio survey? Here's
+        how you might do that.
+    </p>
+
+    <h3>Showing <span id="total"></span> Total Responses</h3>
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>"Please tell us your age."</h3>
+            <canvas id="ageChart" width="300" height="300"></canvas>
+        </div>
+        <div class="col-sm-6">
+            <h3>"Have you ever jump-kicked a lemur?"</h3>
+            <canvas id="lemurChart" width="300" height="300"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3>"Who is your favorite Ninja Turtle and why?"</h3>
+        <table id="turtleResponses">
+            <tr>
+                <th>Response Text / Transcript</th>
+                <th>Recording</th>
+            </tr>
+        </table>
+    </div>
+
+</section>
+
+<footer class="container">
+    Made with <i class="fa fa-heart"></i> by your pals
+    <a href="http://www.twilio.com">@twilio</a>
+</footer>
+
+<!-- JS Dependencies -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="chart.js"></script>
+
+<!-- App script -->
+<script src="index.js"></script>
+
+</body>
+</html>

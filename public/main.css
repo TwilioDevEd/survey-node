@@ -1,0 +1,16 @@
+#main, footer {
+    text-align: center;
+}
+
+footer {
+    margin:40px 0;
+}
+
+table {
+    margin:10px auto;
+}
+
+td {
+    padding:5px;
+    text-align: left;
+}
