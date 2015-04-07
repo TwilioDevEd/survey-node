@@ -1,25 +1,25 @@
 .step(data-title='Checking Out The Results', data-file='public/index.html', data-highlight='')
-:markdown
-  ### Checking Out The Results
+  :markdown
+    ### Checking Out The Results
 
-  In this app's static asset directory, you'll find an `index.html` file that contains some markup for displaying the results of our survey questions. It makes an Ajax request to our Express application to get the last 100 results from our survey to display here.
+    In this app's static asset directory, you'll find an `index.html` file that contains some markup for displaying the results of our survey questions. It makes an Ajax request to our Express application to get the last 100 results from our survey to display here.
 
-  For phone survey responses, there is a link to listen to the recording in addition to the transcribed text sent to our application.
+    For phone survey responses, there is a link to listen to the recording in addition to the transcribed text sent to our application.
 
 .step(data-title='Playing Twilio Recordings', data-file='public/index.js', data-highlight='49-73')
-:markdown
-  ### Playing Twilio Recordings
+  :markdown
+    ### Playing Twilio Recordings
 
-  In the JavaScript that dynamically inserts the recording links into the page, we open the same `RecordingUrl` sent to us from Twilio in a new window. This works well enough, but you might consider playing them directly on the page with a more robust audio library like [Buzz](http://buzz.jaysalvat.com/).  When preparing the recordings to be played via HTML 5 audio, note that each recording is made available [in either WAV or MP3 formats](https://www.twilio.com/docs/api/twiml/record#attributes-action-parameters).
+    In the JavaScript that dynamically inserts the recording links into the page, we open the same `RecordingUrl` sent to us from Twilio in a new window. This works well enough, but you might consider playing them directly on the page with a more robust audio library like [Buzz](http://buzz.jaysalvat.com/).  When preparing the recordings to be played via HTML 5 audio, note that each recording is made available [in either WAV or MP3 formats](https://www.twilio.com/docs/api/twiml/record#attributes-action-parameters).
 
 .step(data-title='All Done!', data-file='public/index.js', data-highlight='')
-:markdown
-  ### That's All Folks
+  :markdown
+    ### That's All Folks
 
-  When you load this page in your browser, you should be able to view the latest results of your awesome automated survey:
+    When you load this page in your browser, you should be able to view the latest results of your awesome automated survey:
 
-  ![Displaying Survey Results](//s3.amazonaws.com/howtodocs/survey-results.png)
+    ![Displaying Survey Results](//s3.amazonaws.com/howtodocs/survey-results.png)
 
-  And that's it! You can reload your browser and watch as the results fly in from your users.
+    And that's it! You can reload your browser and watch as the results fly in from your users.
 
-  We hope you've enjoyed this tutorial. If you have any questions or feedback, please contact [your pals at Twilio](mailto:deved@twilio.com) - we'd love to hear from you!
+    We hope you've enjoyed this tutorial. If you have any questions or feedback, please contact [your pals at Twilio](mailto:deved@twilio.com) - we'd love to hear from you!
