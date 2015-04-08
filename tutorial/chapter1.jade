@@ -1,6 +1,6 @@
 .step(data-title='Introduction', data-file='package.json', data-highlight='')
   :markdown
-    ### How It Works
+    ## How It Works
 
     Implementing your own automated survey with Twilio Voice and SMS can be a huge time saver when you need to collect feedback from a group of people. Whether it's participants in a social services program or a field service organization, you can quickly set up your own survey to collect structured data over the phone or via text message. Here's how it works at a high level:
 
@@ -16,7 +16,7 @@
 
     1. Your application returns a TwiML response to Twilio with instructions to either ask the next question or end the survey.
 
-    ### What We Will Learn
+    ## What We Will Learn
 
     This How-To demonstrates using TwiML to deliver a survey that can be completed via voice call. The survey actually works via SMS text messages, too, but we're going to focus on the looping logic necessary to conduct an interview over the phone. We will create a voice call flow using the [Say][say], [Record][record] and [Gather][gather] TwiML verbs.
 
@@ -30,7 +30,7 @@
 
 .step(data-title='About This Application', data-file='package.json', data-highlight='24-30')
   :markdown
-    ### About This Application
+    ## About This Application
 
     Like most Node.js web applications, this one relies on a number of smaller modules installed via [npm](http://npmjs.org) to handle HTTP requests and store data. The key modules for this application are:
 
@@ -42,7 +42,7 @@
 
 .step(data-title='Bootstrapping the Application', data-file='index.js')
   :markdown
-    ### Bootstrapping the Application
+    ## Bootstrapping the Application
 
     This is the Node file we will execute to serve up our web application. We load our app's configuration from an external file containing the HTTP port we want to run on and the MongoDB database connection string we need to store data using Mongoose.
 
