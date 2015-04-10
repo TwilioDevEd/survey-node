@@ -12,7 +12,7 @@
   "website": "https://www.twilio.com/docs/howto/walkthrough/automated-survey/node/express",
   "repository": "https://github.com/TwilioDevEd/survey-node",
   "logo": "https://s3.amazonaws.com/howtodocs/twilio-logo.png",
-  "success_url": "/",
+  "success_url": "/landing.html",
   "addons": [
     "mongolab"
   ]
