@@ -2,7 +2,7 @@ var twilio = require('twilio');
 var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
 
-// Main interview loop
+// Express route handler for the main interview loop
 exports.interview = function(request, response) {
     var phone = request.body.From;
     var input = request.body.RecordingUrl || request.body.Digits;

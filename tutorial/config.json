@@ -1,5 +1,6 @@
 {
     "title": "Automated Survey",
+    "description": "Instantly collect structured data from your users with a survey conducted over a voice call or SMS text messages. Learn how to create your own survey in the language and framework of your choice.",
     "repo": "TwilioDevEd/survey-node",
     "heroku": true
 }
