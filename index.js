@@ -9,6 +9,9 @@ var voice = require('./routes/voice');
 var message = require('./routes/message');
 var results = require('./routes/results');
 
+// use node A+ promises
+mongoose.Promise = Promise;
+
 // initialize MongoDB connection
 mongoose.connect(config.mongoUrl);
 

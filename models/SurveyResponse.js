@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 // Define survey response model schema
 var SurveyResponseSchema = new mongoose.Schema({
     // phone number of participant
