@@ -58,7 +58,7 @@
 
     In the `Record` use case, we also provide a transcription callback URL. Unlike `Gather` and `Record`, the transcription callback happens outside the loop of the call, sometime in the very near future (several seconds rather than minutes). So while you can't count on having the transcript results during the flow of the call, you can add the transcript to your database record for the response to help enrich that data a bit.
 
-    Another caveat here is that Twilio's transcription service is automated and not always super accurate. If transcription accuracy is critical for you, you might consider using a service with human translators like [Rev.com](https://www.rev.com/).
+    Another caveat here is that Twilio's transcription service is automated and not always super accurate. If transcription accuracy is critical for you, you might consider using a service with human translators like [Rev.com](//www.rev.com/).
 
 .step(data-title='Updating Conversation State', data-file='routes/voice.js', data-highlight='22-27')
   :markdown
@@ -66,7 +66,7 @@
 
     ![Survey Flow Chart](//s3.amazonaws.com/howtodocs/flowchart5.png)
 
-    Saving the user's response and maintaining the state of our conversation with the user is a concern best handled at the [model layer](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) of our server-side application, so we use our MongoDB-backed Mongoose model to handle this for us. 
+    Saving the user's response and maintaining the state of our conversation with the user is a concern best handled at the [model layer](//en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) of our server-side application, so we use our MongoDB-backed Mongoose model to handle this for us. 
 
     Abstracting the survey state from the controller also has the benefit of letting us re-use it for handling survey inputs from text messages. #winning!
 
@@ -83,7 +83,7 @@
     Mongooses are pretty sweet.
 
     ![Rikki Tikki Tavi](//s3.amazonaws.com/howtodocs/rikki.jpg)
-    [<small>Don't even.</small>](http://en.wikipedia.org/wiki/Rikki-Tikki-Tavi)
+    [<small>Don't even.</small>](//en.wikipedia.org/wiki/Rikki-Tikki-Tavi)
 
 .step(data-title='Storing Responses', data-file='models/SurveyResponse.js', data-highlight='52-77')
   :markdown
