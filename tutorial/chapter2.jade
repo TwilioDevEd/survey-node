@@ -20,9 +20,9 @@
 
     [Click on one of your numbers][numbers] and configure Voice and Message URLs that point to your server. In our code, the routes were `/voice` and `/message`, respectively.
 
-    ![Configuring a Twilio Number](//s3.amazonaws.com/howtodocs/number-config.png)
+    ![Configuring a Twilio Number](//raw.githubusercontent.com/TwilioDevEd/survey-node/master/public/webhook-screen-cap.gif)
 
-    [numbers]: /user/account/phone-numbers/incoming
+    [numbers]: /phone-numbers/incoming
 
 .step(data-title='Responding to a Phone Call', data-file='routes/voice.js', data-highlight='5-9')
   :markdown
@@ -36,7 +36,7 @@
 
     We also create a `TwimlResponse` object that we will use to build up a string of XML we can ultimately render as a response to Twilio's request. It's not doing anything fancy - it just provides a JavaScript object that we can use to progressively assemble a valid TwiML string as our program executes.
 
-    [numbers]: /user/account/phone-numbers/incoming
+    [numbers]: /phone-numbers/incoming
 
 .step(data-title='Asking a Question', data-file='routes/voice.js', data-highlight='11-48')
   :markdown
