@@ -1,5 +1,4 @@
-const Promise = require('bluebird');
-const mongoose = require("mongoose");
+const Promise = require("bluebird");
 const expect = require("chai").expect;
 const supertest = require("supertest-promised");
 const parseXML = require("xml-parser");
@@ -7,13 +6,11 @@ const find = require("lodash/find");
 const app = require("../app");
 const SurveyResponse = require("../models/SurveyResponse");
 const agent = supertest(app);
-const _ = require('lodash')
-describe("POST /message", function() {
-  const surveyResponse = {};
 
+describe("POST /message", function() {
   beforeEach(function() {
     return SurveyResponse.remove({})
-    .then(() => console.log('### delete all'))
+    .then(() => console.log("### delete all"))
   });
 
   it("Should return a greeting/question on first survey attempt.", function() {
