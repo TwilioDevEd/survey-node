@@ -92,5 +92,8 @@ SurveyResponseSchema.statics.advanceSurvey = function(args, cb) {
 };
 
 // Export model
+// console.log(mongoose)
+delete mongoose.models.SurveyResponse
+delete mongoose.modelSchemas.SurveyResponse
 var SurveyResponse = mongoose.model('SurveyResponse', SurveyResponseSchema);
 module.exports = SurveyResponse;
