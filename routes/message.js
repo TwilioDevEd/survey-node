@@ -6,7 +6,7 @@ var survey = require('../survey_data');
 module.exports = function(request, response) {
     var phone = request.body.From;
     var input = request.body.Body;
-    
+
     // respond with message TwiML content
     function respond(message) {
         var twiml = new twilio.TwimlResponse();
