@@ -1,4 +1,6 @@
 var app = require('./app');
+var config = require('./config');
+var http = require('http');
 
 // Create HTTP server and mount Express app
 var server = http.createServer(app);

@@ -6,7 +6,7 @@ var survey = require('../survey_data');
 exports.interview = function(request, response) {
     var phone = request.body.From;
     var input = request.body.RecordingUrl || request.body.Digits;
-    var twiml = new twilio.TwimlResponse();
+    var twiml = twilio.TwimlResponse();
 
     // helper to append a new "Say" verb with alice voice
     function say(text) {
@@ -66,7 +66,7 @@ exports.interview = function(request, response) {
             });
         } else {
             // Only other supported type is number
-            say('Enter the number using the number keys on your telephone.' 
+            say('Enter the number using the number keys on your telephone.'
                 + ' Press star to finish.');
             twiml.gather({
                 timeout: 10,
@@ -87,8 +87,8 @@ exports.transcription = function(request, response) {
     var transcript = request.body.TranscriptionText;
 
     SurveyResponse.findById(responseId, function(err, surveyResponse) {
-        if (err || !surveyResponse || 
-            !surveyResponse.responses[questionIndex]) 
+        if (err || !surveyResponse ||
+            !surveyResponse.responses[questionIndex])
             return response.status(500).end();
 
         // Update appropriate answer field
