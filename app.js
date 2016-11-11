@@ -12,6 +12,11 @@ var Promise = require('bluebird');
 // use node A+ promises
 mongoose.Promise = Promise;
 
+// check for connection string
+if (!config.mongoUrl) {
+  throw new Error('MONGO_URL env variable not set.');
+}
+
 var isConn;
 // initialize MongoDB connection
 if (mongoose.connections.length === 0) {
