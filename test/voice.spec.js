@@ -12,7 +12,7 @@ describe("GET /voice", function() {
     return SurveyResponse.remove({});
   });
 
-  it("Should return a goodbye after the final step in the survey.", function() {
+  it("Should return TwiML response with correct message.", function() {
     var requestBody = {
       "Called":"+17072053552",
       "ToState":"CA",

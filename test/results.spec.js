@@ -102,7 +102,7 @@ describe("GET /message", function() {
     });
   });
 
-  it("Should return a goodbye after the final step in the survey.", function() {
+  it("Should return respond with list of questions and answers.", function() {
     var response = {
       "survey":[
         {"text":"Please tell us your age.","type":"number"},
