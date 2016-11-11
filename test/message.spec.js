@@ -1,11 +1,11 @@
-const Promise = require("bluebird");
-const expect = require("chai").expect;
-const supertest = require("supertest-promised");
-const parseXML = require("xml-parser");
-const find = require("lodash/find");
-const app = require("../app");
-const SurveyResponse = require("../models/SurveyResponse");
-const agent = supertest(app);
+var Promise = require("bluebird");
+var expect = require("chai").expect;
+var supertest = require("supertest-promised");
+var parseXML = require("xml-parser");
+var find = require("lodash/find");
+var app = require("../app");
+var SurveyResponse = require("../models/SurveyResponse");
+var agent = supertest(app);
 
 describe("POST /message", function() {
   beforeEach(function() {
@@ -23,9 +23,9 @@ describe("POST /message", function() {
       .expect("Content-Type", /text\/xml/)
       .expect(200)
       .expect(function(res) {
-        const doc = parseXML(res.text);
+        var doc = parseXML(res.text);
 
-        const messageEl = find(doc.root.children, function(el) {
+        var messageEl = find(doc.root.children, function(el) {
           return el.name === "Message";
         });
 
@@ -57,9 +57,9 @@ describe("POST /message", function() {
         .expect("Content-Type", /text\/xml/)
         .expect(200)
         .expect(function(res) {
-          const doc = parseXML(res.text);
+          var doc = parseXML(res.text);
 
-          const messageEl = find(doc.root.children, function(el) {
+          var messageEl = find(doc.root.children, function(el) {
             return el.name === "Message";
           });
 
@@ -81,9 +81,9 @@ describe("POST /message", function() {
         .expect("Content-Type", /text\/xml/)
         .expect(200)
         .expect(function(res) {
-          const doc = parseXML(res.text);
+          var doc = parseXML(res.text);
 
-          const messageEl = find(doc.root.children, function(el) {
+          var messageEl = find(doc.root.children, function(el) {
             return el.name === "Message";
           });
 
@@ -104,9 +104,9 @@ describe("POST /message", function() {
         .expect("Content-Type", /text\/xml/)
         .expect(200)
         .expect(function(res) {
-          const doc = parseXML(res.text);
+          var doc = parseXML(res.text);
 
-          const messageEl = find(doc.root.children, function(el) {
+          var messageEl = find(doc.root.children, function(el) {
             return el.name === "Message";
           });
 
@@ -117,7 +117,7 @@ describe("POST /message", function() {
         .end();
     };
 
-    const steps = [step1, step2, step3, step4];
+    var steps = [step1, step2, step3, step4];
 
     return Promise.each(steps, function(step) {
       return step();

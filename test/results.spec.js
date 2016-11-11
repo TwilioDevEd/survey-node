@@ -1,11 +1,11 @@
-const Promise = require("bluebird");
-const expect = require("chai").expect;
-const supertest = require("supertest-promised");
-const parseXML = require("xml-parser");
-const find = require("lodash/find");
-const app = require("../app");
-const SurveyResponse = require("../models/SurveyResponse");
-const agent = supertest(app);
+var Promise = require("bluebird");
+var expect = require("chai").expect;
+var supertest = require("supertest-promised");
+var parseXML = require("xml-parser");
+var find = require("lodash/find");
+var app = require("../app");
+var SurveyResponse = require("../models/SurveyResponse");
+var agent = supertest(app);
 
 describe("GET /message", function() {
   beforeEach(function() {
@@ -35,9 +35,9 @@ describe("GET /message", function() {
         .expect("Content-Type", /text\/xml/)
         .expect(200)
         .expect(function(res) {
-          const doc = parseXML(res.text);
+          var doc = parseXML(res.text);
 
-          const messageEl = find(doc.root.children, function(el) {
+          var messageEl = find(doc.root.children, function(el) {
             return el.name === "Message";
           });
 
@@ -59,9 +59,9 @@ describe("GET /message", function() {
         .expect("Content-Type", /text\/xml/)
         .expect(200)
         .expect(function(res) {
-          const doc = parseXML(res.text);
+          var doc = parseXML(res.text);
 
-          const messageEl = find(doc.root.children, function(el) {
+          var messageEl = find(doc.root.children, function(el) {
             return el.name === "Message";
           });
 
@@ -82,9 +82,9 @@ describe("GET /message", function() {
         .expect("Content-Type", /text\/xml/)
         .expect(200)
         .expect(function(res) {
-          const doc = parseXML(res.text);
+          var doc = parseXML(res.text);
 
-          const messageEl = find(doc.root.children, function(el) {
+          var messageEl = find(doc.root.children, function(el) {
             return el.name === "Message";
           });
 
@@ -95,7 +95,7 @@ describe("GET /message", function() {
         .end();
     };
 
-    const steps = [clearDb, step1, step2, step3, step4];
+    var steps = [clearDb, step1, step2, step3, step4];
 
     return Promise.each(steps, function(step) {
       return step();
@@ -103,7 +103,7 @@ describe("GET /message", function() {
   });
 
   it("Should return a goodbye after the final step in the survey.", function() {
-    const response = {
+    var response = {
       "survey":[
         {"text":"Please tell us your age.","type":"number"},
         {"text":"Have you ever jump-kicked a lemur?","type":"boolean"},
@@ -127,7 +127,7 @@ describe("GET /message", function() {
       .expect("Content-Type", /application\/json/)
       .expect(200)
       .expect(function(res) {
-        const body = res.body;
+        var body = res.body;
 
         body.results.forEach(function(result) {
           delete result._id;
