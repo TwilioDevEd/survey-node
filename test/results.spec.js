@@ -1,11 +1,12 @@
 var Promise = require("bluebird");
 var expect = require("chai").expect;
 var supertest = require("supertest-promised");
-var parseXML = require("xml-parser");
 var find = require("lodash/find");
 var app = require("../app");
 var SurveyResponse = require("../models/SurveyResponse");
 var agent = supertest(app);
+var xpath = require('xpath');
+var dom = require('xmldom').DOMParser;
 
 describe("GET /message", function() {
   beforeEach(function() {
@@ -35,15 +36,11 @@ describe("GET /message", function() {
         .expect("Content-Type", /text\/xml/)
         .expect(200)
         .expect(function(res) {
-          var doc = parseXML(res.text);
+          var doc = new dom().parseFromString(res.text);
+          var MessageTxt = xpath.select("/Response/Message/text()", doc)[0].data;
 
-          var messageEl = find(doc.root.children, function(el) {
-            return el.name === "Message";
-          });
-
-          expect(messageEl.content).to
-          .contain("Have you ever jump-kicked a lemur? Type &quot;yes&quot;" +
-                   " or &quot;no&quot;.");
+          expect(MessageTxt).to
+          .contain("Have you ever jump-kicked a lemur? Type \"yes\" or \"no\".");
           return;
         })
         .end();
@@ -59,13 +56,10 @@ describe("GET /message", function() {
         .expect("Content-Type", /text\/xml/)
         .expect(200)
         .expect(function(res) {
-          var doc = parseXML(res.text);
+          var doc = new dom().parseFromString(res.text);
+          var MessageTxt = xpath.select("/Response/Message/text()", doc)[0].data;
 
-          var messageEl = find(doc.root.children, function(el) {
-            return el.name === "Message";
-          });
-
-          expect(messageEl.content).to
+          expect(MessageTxt).to
           .contain("Who is your favorite Teenage Mutant Ninja Turtle and why?");
           return;
         })
@@ -82,13 +76,10 @@ describe("GET /message", function() {
         .expect("Content-Type", /text\/xml/)
         .expect(200)
         .expect(function(res) {
-          var doc = parseXML(res.text);
+          var doc = new dom().parseFromString(res.text);
+          var MessageTxt = xpath.select("/Response/Message/text()", doc)[0].data;
 
-          var messageEl = find(doc.root.children, function(el) {
-            return el.name === "Message";
-          });
-
-          expect(messageEl.content).to
+          expect(MessageTxt).to
           .contain("Thank you for taking this survey. Goodbye!");
           return;
         })
@@ -102,7 +93,7 @@ describe("GET /message", function() {
     });
   });
 
-  it("Should return respond with list of questions and answers.", function() {
+  it("Returns a response with list of questions and answers.", function() {
     var response = {
       "survey":[
         {"text":"Please tell us your age.","type":"number"},

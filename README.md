@@ -2,13 +2,15 @@
   <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
 </a>
 
+[![Build Status](https://travis-ci.org/TwilioDevEd/survey-node.svg?branch=next-gen)](https://travis-ci.org/TwilioDevEd/survey-node)
+
 # Automated Surveys. Powered by Twilio - Node.js/Express
 
 Instantly collect structured data from your users with a survey conducted over a voice call or SMS text messages. Learn how to create your own survey in the language and framework of your choice. For a step-by-step tutorial see [twilio docs](https://www.twilio.com/docs/howto/walkthrough/automated-survey/node/express).
 
 ## Deploy On Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/survey-node)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/survey-node)
 
   And, remember to configure Twilio webhooks in the configuration section below.
 
@@ -93,8 +95,6 @@ To run the app locally:
 
 
 1. Check it out at [http://localhost:3000](http://localhost:3000)
-
-That's it
 
 ## Meta
 

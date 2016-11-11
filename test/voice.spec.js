@@ -1,7 +1,6 @@
 var Promise = require("bluebird");
 var expect = require("chai").expect;
 var supertest = require("supertest-promised");
-var parseXML = require("xml-parser");
 var find = require("lodash/find");
 var app = require("../app");
 var SurveyResponse = require("../models/SurveyResponse");
@@ -12,25 +11,25 @@ describe("GET /voice", function() {
     return SurveyResponse.remove({});
   });
 
-  it("Should return TwiML response with correct message.", function() {
+  it("returns a TwiML response with correct message.", function() {
     var requestBody = {
-      "Called":"+17072053552",
+      "Called":"+17070000000",
       "ToState":"CA",
       "CallerCountry":"US",
       "Direction":"inbound",
       "CallerState":"TX",
       "ToZip":"94595",
-      "CallSid":"CAf20aef736dccc79518789334ba8f73f3",
-      "To":"+17072053552",
+      "CallSid":"CAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "To":"+17070000000",
       "CallerZip":"",
       "ToCountry":"US",
       "ApiVersion":"2010-04-01",
       "CalledZip":"94595",
       "CalledCity":"WALNUT CREEK",
-      "CallStatus":"ringing", "From":"+17378742833", "AccountSid":"AC4ee8a4bf66c95837fc46316395718baa",
+      "CallStatus":"ringing", "From":"+17370000000", "AccountSid":"AC4XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
       "CalledCountry":"US",
       "CallerCity":"",
-      "Caller":"+17378742833",
+      "Caller":"+17370000000",
       "FromCountry":"US",
       "ToCity":"WALNUT CREEK",
       "FromCity":"",
