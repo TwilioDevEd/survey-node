@@ -123,7 +123,7 @@ var CodeView = Backbone.View.extend({
         var self = this;
         // Store a reference to main app model
         self.app = options.app;
-        
+
         // Create editor widget
         var ta = self.$el.find('.saurus-editor').get(0);
         self.editor = ace.edit(ta);
@@ -234,9 +234,9 @@ var CodeView = Backbone.View.extend({
 
         // helper to scroll to a line
         function scrollTo(line, animated) {
-            // Give file time to render before attempting scroll to prevent 
+            // Give file time to render before attempting scroll to prevent
             // scrolling from beyond the top of the document (just trust me,
-            // without this files short enough to have no scroll slide in 
+            // without this files short enough to have no scroll slide in
             // weird from the top)
             setTimeout(function() {
                 self.editor.scrollToLine(line, false, animated);
@@ -266,7 +266,8 @@ var autoShowExplorer = 1280;
 // Helper to generate an HTML string for a leaf file in the explorer
 function createFileListItem(fileName, fullPath) {
     var html = '<li class="saurus-explorer-file" data-file="' + fullPath + '">';
-    html += '<i class="fa fa-fw fa-file-text-o"></i>&nbsp;' + fileName + '</li>';
+    html += '<i class="fa fa-fw fa-file-text-o"></i>&nbsp;' 
+        + truncFileName + '</li>';
     return html;
 }
 
@@ -289,7 +290,7 @@ var ExplorerView = Backbone.View.extend({
         self.$inner = self.$el.find('.saurus-file-list');
         self.$files = $('#viewsaurus .saurus-file');
         self.$steps = $('#viewsaurus .saurus-content .step');
-        
+
         // Subscribe to model updates
         self.app.on('change:explorerShown', self.toggleExplorer, self);
         self.app.on('change:stepIndex', self.selectCurrent, self);
@@ -349,7 +350,7 @@ var ExplorerView = Backbone.View.extend({
             var files = folders[folder];
             for (var i = 0, l = files.length; i<l; i++) {
                 var fileData = files[i];
-                html += createFileListItem(fileData.fileName, 
+                html += createFileListItem(fileData.fileName,
                     fileData.fullPath);
             }
             html += '</ul></li>';
@@ -420,7 +421,9 @@ var ProseView = Backbone.View.extend({
         'click .nav-overview': 'toggleOverview',
         'click .saurus-overview a': 'toggleOverview',
         'click .saurus-start a': 'hideStart',
-        'click .saurus-content img': 'showLightbox'
+        'click .saurus-content img': 'showLightbox',
+        'click .nav-previous': 'previous',
+        'click .nav-next': 'next'
     },
 
     // Initialize UI
@@ -452,7 +455,7 @@ var ProseView = Backbone.View.extend({
 
         // On any history event, we want to hide the start screen
         Backbone.history.on('all', self.hideStart, self);
-    
+
         // Subscribe to model updates
         self.app.on('change:stepIndex', self.stepChanged, self);
         self.model.on('change:overviewShown', self.overviewChanged, self);
