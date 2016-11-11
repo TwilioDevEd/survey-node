@@ -38,6 +38,7 @@
     "mocha": "^3.1.2",
     "supertest": "^2.0.1",
     "supertest-promised": "^1.0.0",
-    "xml-parser": "^1.2.1"
+    "xmldom": "^0.1.22",
+    "xpath": "0.0.23"
   }
 }
