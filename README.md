@@ -16,20 +16,7 @@ Instantly collect structured data from your users with a survey conducted over a
 
 ## Local development
 
-First you need to install [Node.js](http://nodejs.org/).
-
-1. This sample application stores data in a [MongoDB](https://www.mongodb.org/) database using [Mongoose](http://mongoosejs.com/). You can   download and run MongoDB yourself (on OS X, Linux or Windows).
-
-   On OS X, maybe the easiest way to get MongoDB running locally is to install it via [Homebrew](http://brew.sh/).
-
-   ```bash
-   $ brew install mongodb
-   ```
-   You should then be able to run a local server with:
-
-   ```bash
-   $ mongod
-   ```
+First you need to install [Node.js](http://nodejs.org/) as well as [MongoDB](https://www.mongodb.org/)
 
 To run the app locally:
 
