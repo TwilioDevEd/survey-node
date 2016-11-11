@@ -1,4 +1,3 @@
-var http = require('http');
 var path = require('path');
 var express = require('express');
 var morgan = require('morgan');
@@ -9,6 +8,7 @@ var voice = require('./routes/voice');
 var message = require('./routes/message');
 var results = require('./routes/results');
 var Promise = require('bluebird');
+
 // use node A+ promises
 mongoose.Promise = Promise;
 

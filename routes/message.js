@@ -9,7 +9,7 @@ module.exports = function(request, response) {
 
     // respond with message TwiML content
     function respond(message) {
-        var twiml = new twilio.TwimlResponse();
+        var twiml = twilio.TwimlResponse();
         twiml.message(message);
         response.type('text/xml');
         response.send(twiml.toString());
