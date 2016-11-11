@@ -1,11 +1,11 @@
-const Promise = require("bluebird");
-const expect = require("chai").expect;
-const supertest = require("supertest-promised");
-const parseXML = require("xml-parser");
-const find = require("lodash/find");
-const app = require("../app");
-const SurveyResponse = require("../models/SurveyResponse");
-const agent = supertest(app);
+var Promise = require("bluebird");
+var expect = require("chai").expect;
+var supertest = require("supertest-promised");
+var parseXML = require("xml-parser");
+var find = require("lodash/find");
+var app = require("../app");
+var SurveyResponse = require("../models/SurveyResponse");
+var agent = supertest(app);
 
 describe("GET /voice", function() {
   beforeEach(function() {
@@ -13,7 +13,7 @@ describe("GET /voice", function() {
   });
 
   it("Should return a goodbye after the final step in the survey.", function() {
-    const requestBody = {
+    var requestBody = {
       "Called":"+17072053552",
       "ToState":"CA",
       "CallerCountry":"US",
