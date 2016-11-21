@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- 'stable'
+- '5.12.0'
+- '4.6.0'
+services: mongodb
+env:
+  global:
+    - MONGO_URL=mongodb://localhost:27017/test

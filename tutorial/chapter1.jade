@@ -20,7 +20,7 @@
 
     This How-To demonstrates using TwiML to deliver a survey that can be completed via voice call. The survey actually works via SMS text messages, too, but we're going to focus on the looping logic necessary to conduct an interview over the phone. We will create a voice call flow using the [Say][say], [Record][record] and [Gather][gather] TwiML verbs.
 
-    You will also learn how to maintain conversation state in a database that spans multiple webhook requests. Beyond an automated survey, these techniques can be applied to implement more complex [IVR](http://en.wikipedia.org/wiki/Interactive_voice_response) systems or text message interfaces.
+    You will also learn how to maintain conversation state in a database that spans multiple webhook requests. Beyond an automated survey, these techniques can be applied to implement more complex [IVR](//en.wikipedia.org/wiki/Interactive_voice_response) systems or text message interfaces.
 
     Sound like a plan? Let's get started! Click the right arrow above this text to move on to the next step of the tutorial.
 
@@ -28,15 +28,15 @@
     [record]: /docs/api/twiml/record
     [gather]: /docs/api/twiml/gather
 
-.step(data-title='About This Application', data-file='package.json', data-highlight='24-30')
+.step(data-title='About This Application', data-file='package.json', data-highlight='25-33')
   :markdown
     ## About This Application
 
-    Like most Node.js web applications, this one relies on a number of smaller modules installed via [npm](http://npmjs.org) to handle HTTP requests and store data. The key modules for this application are:
+    Like most Node.js web applications, this one relies on a number of smaller modules installed via [npm](//npmjs.org) to handle HTTP requests and store data. The key modules for this application are:
 
-    * [`express`](http://expressjs.com) - a popular web framework that helps us respond to HTTP requests to our application.
-    * [`mongoose`](http://mongoosejs.com/) - an Object/Document Mapper (ODM) for [MongoDB](http://www.mongodb.org/).
-    * [`twilio`](https://twilio.github.io/twilio-node) - the Twilio Node module will help us generate TwiML responses to drive our interview.
+    * [`express`](//expressjs.com) - a popular web framework that helps us respond to HTTP requests to our application.
+    * [`mongoose`](//mongoosejs.com/) - an Object/Document Mapper (ODM) for [MongoDB](//www.mongodb.org/).
+    * [`twilio`](//twilio.github.io/twilio-node) - the Twilio Node module will help us generate TwiML responses to drive our interview.
 
     Let's check out the survey questions we want to ask next.
 
@@ -46,6 +46,6 @@
 
     This is the Node file we will execute to serve up our web application. We load our app's configuration from an external file containing the HTTP port we want to run on and the MongoDB database connection string we need to store data using Mongoose.
 
-    We also define four routes to be handled by our web application. Three of the routes are [webhooks](http://en.wikipedia.org/wiki/Webhook) that will be requested by Twilio when your Twilio survey number receives an incoming call or text, or when the results of a transcription job are ready. The fourth route will be used by our reporting UI to get the results of the survey from the database.
+    We also define four routes to be handled by our web application. Three of the routes are [webhooks](//en.wikipedia.org/wiki/Webhook) that will be requested by Twilio when your Twilio survey number receives an incoming call or text, or when the results of a transcription job are ready. The fourth route will be used by our reporting UI to get the results of the survey from the database.
 
     Now that our application is all set up, let's look at the high level steps necessary to implement a voice interview via Twilio and TwiML.
