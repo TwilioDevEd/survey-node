@@ -26,19 +26,19 @@
 </ol>
 <h2 id="what-we-will-learn">What We Will Learn</h2>
 <p>This How-To demonstrates using TwiML to deliver a survey that can be completed via voice call. The survey actually works via SMS text messages, too, but we&#39;re going to focus on the looping logic necessary to conduct an interview over the phone. We will create a voice call flow using the <a href="/docs/api/twiml/say">Say</a>, <a href="/docs/api/twiml/record">Record</a> and <a href="/docs/api/twiml/gather">Gather</a> TwiML verbs.</p>
-<p>You will also learn how to maintain conversation state in a database that spans multiple webhook requests. Beyond an automated survey, these techniques can be applied to implement more complex <a href="http://en.wikipedia.org/wiki/Interactive_voice_response">IVR</a> systems or text message interfaces.</p>
+<p>You will also learn how to maintain conversation state in a database that spans multiple webhook requests. Beyond an automated survey, these techniques can be applied to implement more complex <a href="//en.wikipedia.org/wiki/Interactive_voice_response">IVR</a> systems or text message interfaces.</p>
 <p>Sound like a plan? Let&#39;s get started! Click the right arrow above this text to move on to the next step of the tutorial.</p>
 </div><div data-title="About This Application" data-file="package.json" data-highlight="25-33" class="step"><h2 id="about-this-application">About This Application</h2>
 <p>Like most Node.js web applications, this one relies on a number of smaller modules installed via <a href="//npmjs.org">npm</a> to handle HTTP requests and store data. The key modules for this application are:</p>
 <ul>
-<li><a href="http://expressjs.com"><code>express</code></a> - a popular web framework that helps us respond to HTTP requests to our application.</li>
-<li><a href="http://mongoosejs.com/"><code>mongoose</code></a> - an Object/Document Mapper (ODM) for <a href="http://www.mongodb.org/">MongoDB</a>.</li>
-<li><a href="https://twilio.github.io/twilio-node"><code>twilio</code></a> - the Twilio Node module will help us generate TwiML responses to drive our interview.</li>
+<li><a href="//expressjs.com"><code>express</code></a> - a popular web framework that helps us respond to HTTP requests to our application.</li>
+<li><a href="//mongoosejs.com/"><code>mongoose</code></a> - an Object/Document Mapper (ODM) for <a href="//www.mongodb.org/">MongoDB</a>.</li>
+<li><a href="//twilio.github.io/twilio-node"><code>twilio</code></a> - the Twilio Node module will help us generate TwiML responses to drive our interview.</li>
 </ul>
 <p>Let&#39;s check out the survey questions we want to ask next.</p>
 </div><div data-title="Bootstrapping the Application" data-file="index.js" class="step"><h2 id="bootstrapping-the-application">Bootstrapping the Application</h2>
 <p>This is the Node file we will execute to serve up our web application. We load our app&#39;s configuration from an external file containing the HTTP port we want to run on and the MongoDB database connection string we need to store data using Mongoose.</p>
-<p>We also define four routes to be handled by our web application. Three of the routes are <a href="http://en.wikipedia.org/wiki/Webhook">webhooks</a> that will be requested by Twilio when your Twilio survey number receives an incoming call or text, or when the results of a transcription job are ready. The fourth route will be used by our reporting UI to get the results of the survey from the database.</p>
+<p>We also define four routes to be handled by our web application. Three of the routes are <a href="//en.wikipedia.org/wiki/Webhook">webhooks</a> that will be requested by Twilio when your Twilio survey number receives an incoming call or text, or when the results of a transcription job are ready. The fourth route will be used by our reporting UI to get the results of the survey from the database.</p>
 <p>Now that our application is all set up, let&#39;s look at the high level steps necessary to implement a voice interview via Twilio and TwiML.</p>
 </div></div><div data-title="The Interview Loop" class="chapter"><div data-title="The Voice Interview Loop" data-file="routes/voice.js" data-highlight="" class="step"><h2 id="the-voice-interview-loop">The Voice Interview Loop</h2>
 <p>It is helpful to visualize your interaction with a user during a survey as a loop. The chart below traces the flow of a user&#39;s phone call to your Twilio number to participate in the survey (click it to make it bigger):</p>
@@ -47,9 +47,9 @@
 <p>It&#39;s up to our application to process and store the user&#39;s input, maintain the current state of the conversation, and respond back to the user. Let&#39;s dive into this flow to see how it actually works.</p>
 </div><div data-title="Responding to a Phone Call" data-file="routes/voice.js" data-highlight="" class="step"><h2 id="responding-to-a-phone-call">Responding to a Phone Call</h2>
 <p><img src="//s3.amazonaws.com/howtodocs/flowchart2.png" alt="Survey Flow Chart"></p>
-<p>To initiate the interview process, we need to configure one of our <a href="/user/account/phone-numbers/incoming">Twilio numbers</a> to send our web application an HTTP request when we get an incoming call or text (remember, our app accepts text messages as well, even though we&#39;re focusing on the voice side).</p>
-<p><a href="/user/account/phone-numbers/incoming">Click on one of your numbers</a> and configure Voice and Message URLs that point to your server. In our code, the routes were <code>/voice</code> and <code>/message</code>, respectively.</p>
-<p><img src="//s3.amazonaws.com/howtodocs/number-config.png" alt="Configuring a Twilio Number"></p>
+<p>To initiate the interview process, we need to configure one of our <a href="/phone-numbers/incoming">Twilio numbers</a> to send our web application an HTTP request when we get an incoming call or text (remember, our app accepts text messages as well, even though we&#39;re focusing on the voice side).</p>
+<p><a href="/phone-numbers/incoming">Click on one of your numbers</a> and configure Voice and Message URLs that point to your server. In our code, the routes were <code>/voice</code> and <code>/message</code>, respectively.</p>
+<p><img src="//raw.githubusercontent.com/TwilioDevEd/survey-node/master/public/webhook-screen-cap.gif" alt="Configuring a Twilio Number"></p>
 </div><div data-title="Responding to a Phone Call" data-file="routes/voice.js" data-highlight="5-9" class="step"><h2 id="responding-to-a-phone-call">Responding to a Phone Call</h2>
 <p><img src="//s3.amazonaws.com/howtodocs/flowchart3.png" alt="Survey Flow Chart"></p>
 <p>The <code>voice</code> route maps to this Express handler function, which takes an HTTP request and HTTP response as arguments. On the request, we can access the phone number of the person calling in the <code>From</code> POST parameter - we can use this to uniquely identify a person taking the survey. </p>
@@ -63,10 +63,10 @@
 <p><img src="//s3.amazonaws.com/howtodocs/flowchart4.png" alt="Survey Flow Chart"></p>
 <p>In our TwiML response, we need to include either a <code>Gather</code> tag or a <code>Record</code> tag to collect input from the user. Which tag we use depends on the question type in the survey.</p>
 <p>In the <code>Record</code> use case, we also provide a transcription callback URL. Unlike <code>Gather</code> and <code>Record</code>, the transcription callback happens outside the loop of the call, sometime in the very near future (several seconds rather than minutes). So while you can&#39;t count on having the transcript results during the flow of the call, you can add the transcript to your database record for the response to help enrich that data a bit.</p>
-<p>Another caveat here is that Twilio&#39;s transcription service is automated and not always super accurate. If transcription accuracy is critical for you, you might consider using a service with human translators like <a href="https://www.rev.com/">Rev.com</a>.</p>
+<p>Another caveat here is that Twilio&#39;s transcription service is automated and not always super accurate. If transcription accuracy is critical for you, you might consider using a service with human translators like <a href="//www.rev.com/">Rev.com</a>.</p>
 </div><div data-title="Updating Conversation State" data-file="routes/voice.js" data-highlight="22-27" class="step"><h2 id="updating-conversation-state">Updating Conversation State</h2>
 <p><img src="//s3.amazonaws.com/howtodocs/flowchart5.png" alt="Survey Flow Chart"></p>
-<p>Saving the user&#39;s response and maintaining the state of our conversation with the user is a concern best handled at the <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model layer</a> of our server-side application, so we use our MongoDB-backed Mongoose model to handle this for us. </p>
+<p>Saving the user&#39;s response and maintaining the state of our conversation with the user is a concern best handled at the <a href="//en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model layer</a> of our server-side application, so we use our MongoDB-backed Mongoose model to handle this for us. </p>
 <p>Abstracting the survey state from the controller also has the benefit of letting us re-use it for handling survey inputs from text messages. #winning!</p>
 <p>Let&#39;s dive into the model object next to briefly examine how that works.</p>
 </div><div data-title="The Mongoose Schema" data-file="models/SurveyResponse.js" data-highlight="1-16" class="step"><h2 id="the-mongoose-schema">The Mongoose Schema</h2>
@@ -74,7 +74,7 @@
 <p>In our model, we create a schema that allows us to constrain and validate the form of documents that we insert into MongoDB. However, the <code>Mixed</code> type lets us store arbitrary JavaScript objects in the <code>responses</code> array, so we have some flexibility there with the objects we use to store our user&#39;s answers.</p>
 <p>Mongooses are pretty sweet.</p>
 <p><img src="//s3.amazonaws.com/howtodocs/rikki.jpg" alt="Rikki Tikki Tavi">
-<a href="http://en.wikipedia.org/wiki/Rikki-Tikki-Tavi">&lt;small&gt;Don&#39;t even.&lt;/small&gt;</a></p>
+<a href="//en.wikipedia.org/wiki/Rikki-Tikki-Tavi">&lt;small&gt;Don&#39;t even.&lt;/small&gt;</a></p>
 </div><div data-title="Storing Responses" data-file="models/SurveyResponse.js" data-highlight="52-77" class="step"><h2 id="storing-responses">Storing Responses</h2>
 <p><img src="//s3.amazonaws.com/howtodocs/flowchart5.png" alt="Survey Flow Chart"></p>
 <p>Prior to saving a response from the user, we convert the raw string values submitted into data types that will be easier for us to work with as we analyze and visualize our survey data.</p>
@@ -86,7 +86,7 @@
 <p>In this app&#39;s static asset directory, you&#39;ll find an <code>index.html</code> file that contains some markup for displaying the results of our survey questions. It makes an Ajax request to our Express application to get the last 100 results from our survey to display here.</p>
 <p>For phone survey responses, there is a link to listen to the recording in addition to the transcribed text sent to our application.</p>
 </div><div data-title="Playing Twilio Recordings" data-file="public/index.js" data-highlight="49-73" class="step"><h2 id="playing-twilio-recordings">Playing Twilio Recordings</h2>
-<p>In the JavaScript that dynamically inserts the recording links into the page, we open the same <code>RecordingUrl</code> sent to us from Twilio in a new window. This works well enough, but you might consider playing them directly on the page with a more robust audio library like <a href="http://buzz.jaysalvat.com/">Buzz</a>.  When preparing the recordings to be played via HTML 5 audio, note that each recording is made available <a href="https://www.twilio.com/docs/api/twiml/record#attributes-action-parameters">in either WAV or MP3 formats</a>.</p>
+<p>In the JavaScript that dynamically inserts the recording links into the page, we open the same <code>RecordingUrl</code> sent to us from Twilio in a new window. This works well enough, but you might consider playing them directly on the page with a more robust audio library like <a href="//buzz.jaysalvat.com/">Buzz</a>.  When preparing the recordings to be played via HTML 5 audio, note that each recording is made available <a href="//www.twilio.com/docs/api/twiml/record#attributes-action-parameters">in either WAV or MP3 formats</a>.</p>
 </div><div data-title="All Done!" data-file="public/index.js" data-highlight="" class="step"><h2 id="that-s-all-folks">That&#39;s All Folks</h2>
 <p>When you load this page in your browser, you should be able to view the latest results of your awesome automated survey:</p>
 <p><img src="//s3.amazonaws.com/howtodocs/survey-results.png" alt="Displaying Survey Results"></p>

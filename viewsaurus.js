@@ -123,11 +123,11 @@ var CodeView = Backbone.View.extend({
         var self = this;
         // Store a reference to main app model
         self.app = options.app;
-
+        
         // Create editor widget
         var ta = self.$el.find('.saurus-editor').get(0);
         self.editor = ace.edit(ta);
-        self.editor.setFontSize(12);
+        self.editor.setFontSize(14);
         self.editor.setAnimatedScroll(true);
         self.editor.setReadOnly(true);
         self.editor.setHighlightActiveLine(false);
@@ -180,13 +180,23 @@ var CodeView = Backbone.View.extend({
         if (stepFile) {
             var $file = $('.saurus-file[data-file="' + stepFile + '"]');
             self.showFile($file, highlightString);
+        } else {
+            // Remove highlighting if no file, and force redraw
+            self.editor.getSession().setActiveLines('');
+            self.editor.setValue(self.editor.getValue());
+            self.editor.clearSelection();
         }
     },
 
     // Toggle file explorer
     toggleExplorer: function() {
         var self = this;
-        self.app.set('explorerShown', !self.app.get('explorerShown'));
+        var shown = self.app.get('explorerShown');
+        // analytics
+        if (!shown) {
+            self.app.trigger('show_explorer');
+        }
+        self.app.set('explorerShown', !shown);
     },
 
     // Show/hide file explorer
@@ -215,7 +225,7 @@ var CodeView = Backbone.View.extend({
         // Update editor content and editing mode
         self.app.set({
             currentFile: filePath
-        }, { silent: true });
+        });
         self.editor.getSession().setMode('ace/mode/'+mode);
 
         // Update file breadcrumbs
@@ -234,9 +244,9 @@ var CodeView = Backbone.View.extend({
 
         // helper to scroll to a line
         function scrollTo(line, animated) {
-            // Give file time to render before attempting scroll to prevent
+            // Give file time to render before attempting scroll to prevent 
             // scrolling from beyond the top of the document (just trust me,
-            // without this files short enough to have no scroll slide in
+            // without this files short enough to have no scroll slide in 
             // weird from the top)
             setTimeout(function() {
                 self.editor.scrollToLine(line, false, animated);
@@ -265,6 +275,11 @@ var autoShowExplorer = 1280;
 
 // Helper to generate an HTML string for a leaf file in the explorer
 function createFileListItem(fileName, fullPath) {
+    // create truncated file name
+    var truncFileName = fileName;
+    if (truncFileName.length > 30) {
+        truncFileName = '...' + fileName.substring(fileName.length-30);
+    }
     var html = '<li class="saurus-explorer-file" data-file="' + fullPath + '">';
     html += '<i class="fa fa-fw fa-file-text-o"></i>&nbsp;' 
         + truncFileName + '</li>';
@@ -290,7 +305,7 @@ var ExplorerView = Backbone.View.extend({
         self.$inner = self.$el.find('.saurus-file-list');
         self.$files = $('#viewsaurus .saurus-file');
         self.$steps = $('#viewsaurus .saurus-content .step');
-
+        
         // Subscribe to model updates
         self.app.on('change:explorerShown', self.toggleExplorer, self);
         self.app.on('change:stepIndex', self.selectCurrent, self);
@@ -346,11 +361,11 @@ var ExplorerView = Backbone.View.extend({
         for (var folder in folders) {
             html += '<li class="saurus-explorer-folder">';
             html += '<i class="fa fa-fw fa-folder-o"></i>';
-            html += '&nbsp;' + folder + '<ul>'
+            html += '&nbsp;' + folder + '<ul>';
             var files = folders[folder];
             for (var i = 0, l = files.length; i<l; i++) {
                 var fileData = files[i];
-                html += createFileListItem(fileData.fileName,
+                html += createFileListItem(fileData.fileName, 
                     fileData.fullPath);
             }
             html += '</ul></li>';
@@ -383,10 +398,12 @@ var ExplorerView = Backbone.View.extend({
         var $step = self.$steps.eq(self.app.get('stepIndex'));
         var stepFile = $step.attr('data-file');
 
-        // Highlight current step file
-        var $file = self.$el.find('li[data-file="' + stepFile + '"]');
-        self.$el.find('li').removeClass('current');
-        $file.addClass('current');
+        // Highlight current step file or keep current selection
+        if (stepFile) {
+            var $file = self.$el.find('li[data-file="' + stepFile + '"]');
+            self.$el.find('li').removeClass('current');
+            $file.addClass('current');
+        }
     },
 
     // Manually select a file from the explorer
@@ -401,6 +418,13 @@ var ExplorerView = Backbone.View.extend({
 
 module.exports = ExplorerView;
 },{}],6:[function(require,module,exports){
+// Get Title for a step either from a data attribute or the first title tag
+function titleForStep($e) {
+    var title = $e.attr('data-title');
+    if (!title) title = $e.find('h1, h2, h3, h4, h5').first().text();
+    return title;
+}
+
 // Represent UI state for prose view
 var ProseModel = Backbone.Model.extend({
     defaults: {
@@ -413,6 +437,9 @@ var ProseView = Backbone.View.extend({
     // Mount on the prose section
     el: '#viewsaurus .saurus-prose',
 
+    // track if start event was fired
+    startFired: false,
+
     // track whether or not the last step has been reached
     lastStepReached: false,
 
@@ -423,7 +450,7 @@ var ProseView = Backbone.View.extend({
         'click .saurus-start a': 'hideStart',
         'click .saurus-content img': 'showLightbox',
         'click .nav-previous': 'previous',
-        'click .nav-next': 'next'
+        'click .nav-next': 'next' 
     },
 
     // Initialize UI
@@ -455,10 +482,21 @@ var ProseView = Backbone.View.extend({
 
         // On any history event, we want to hide the start screen
         Backbone.history.on('all', self.hideStart, self);
-
+    
         // Subscribe to model updates
         self.app.on('change:stepIndex', self.stepChanged, self);
         self.model.on('change:overviewShown', self.overviewChanged, self);
+    },
+
+    // Analytics - fire event on main app for next/previous
+    next: function() {
+        var self = this;
+        self.app.trigger('next');
+    },
+
+    previous: function() {
+        var self = this;
+        self.app.trigger('previous');
     },
 
     // Show a lightbox when an image is clicked
@@ -470,7 +508,13 @@ var ProseView = Backbone.View.extend({
     // Hide the initial start prompt
     hideStart: function() {
         var self = this;
-        self.app.trigger('start');
+        if (!self.startFired) {
+            // Defer to allow page listeners to register
+            _.defer(function() {
+                self.app.trigger('start');
+            });
+            self.startFired = false;
+        }
         self.$start.fadeOut();
     },
 
@@ -480,7 +524,7 @@ var ProseView = Backbone.View.extend({
         var text = "You did it! Good for you :)";
         if (index < self.app.totalSteps) {
             var $next = self.$content.find('.step').eq(index);
-            var truncated = $next.attr('data-title').substring(0,35);
+            var truncated = titleForStep($next).substring(0,35);
             if (truncated.length > 34) {
                 truncated += '...';
             }
@@ -492,6 +536,9 @@ var ProseView = Backbone.View.extend({
     // toggle overview shown on view model on button click
     toggleOverview: function() {
         var self = this;
+        if (!self.model.get('overviewShown')) {
+            self.app.trigger('show_overview');
+        }
         self.model.set('overviewShown', !self.model.get('overviewShown'));
     },
 
@@ -518,7 +565,7 @@ var ProseView = Backbone.View.extend({
         self.$content.scrollTop(0);
 
         // Update section title
-        self.$title.html($step.attr('data-title'));
+        // self.$title.html($step.attr('data-title'));
 
         // Update current link in overview
         self.$overviewList.find('li').removeClass('current');
@@ -533,7 +580,7 @@ var ProseView = Backbone.View.extend({
             // If there's no next step, we've reached the end for the first time
             if (!self.lastStepReached) {
                 self.lastStepReached = true;
-                self.app.trigger('last_step');
+                self.app.trigger('project_completed');
             }
             self.$next.removeClass('clickable')
                 .find('a').attr('href', '#' + self.app.get('stepIndex'));
@@ -590,7 +637,7 @@ var ProseView = Backbone.View.extend({
             } else {
                 html += '<li data-step="' + stepIndex + '">';
                 html += '<a href="#' + stepIndex + '">';
-                html += $thing.attr('data-title') + '</a></li>';
+                html += titleForStep($thing) + '</a></li>';
                 stepIndex++;
             }
         });
