@@ -1,4 +1,4 @@
-var twilio = require('twilio');
+var VoiceResponse = require('twilio/lib/twiml/VoiceResponse');
 var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
 
@@ -6,11 +6,11 @@ var survey = require('../survey_data');
 exports.interview = function(request, response) {
     var phone = request.body.From;
     var input = request.body.RecordingUrl || request.body.Digits;
-    var twiml = twilio.TwimlResponse();
+    var twiml = new VoiceResponse();
 
     // helper to append a new "Say" verb with alice voice
     function say(text) {
-        twiml.say(text, { voice: 'alice'});
+        twiml.say({ voice: 'alice'}, text);
     }
 
     // respond with the current TwiML content

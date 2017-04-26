@@ -29,7 +29,7 @@
     "jade": "^1.9.2",
     "mongoose": "4.6.6",
     "morgan": "^1.5.1",
-    "twilio": "3.0.0-rc.13"
+    "twilio": "3.0.0-rc.16"
   },
   "devDependencies": {
     "bluebird": "^3.4.6",
