@@ -1,4 +1,4 @@
-var VoiceResponse = require('twilio/lib/twiml/VoiceResponse');
+var VoiceResponse = require('twilio').twiml.VoiceResponse;
 var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
 

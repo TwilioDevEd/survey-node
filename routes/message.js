@@ -1,4 +1,4 @@
-var MessagingResponse = require('twilio/lib/twiml/MessagingResponse');
+var MessagingResponse = require('twilio').twiml.MessagingResponse;
 var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
 
