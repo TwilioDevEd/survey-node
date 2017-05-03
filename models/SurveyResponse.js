@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 // Define survey response model schema
 var SurveyResponseSchema = new mongoose.Schema({
     // phone number of participant
@@ -93,5 +92,7 @@ SurveyResponseSchema.statics.advanceSurvey = function(args, cb) {
 };
 
 // Export model
+delete mongoose.models.SurveyResponse
+delete mongoose.modelSchemas.SurveyResponse
 var SurveyResponse = mongoose.model('SurveyResponse', SurveyResponseSchema);
 module.exports = SurveyResponse;

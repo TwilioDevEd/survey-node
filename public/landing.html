@@ -91,11 +91,11 @@
       <div id="banner"></div>
       <h1><%= title %></h1>
       <div id="container">
-          <p> 
+          <p>
               Congratulations! You've just deployed the <a href="http://www.twilio.com/docs/howto/walkthrough/<%= slug %>/<%= language %>/<%= framework %>"
-              target="_blank"><%= title %></a> demo application. 
+              target="_blank"><%= title %></a> demo application.
               Tweet to us <a href="http://twitter.com/twilio">@twilio</a> if you have
-              any questions. // '
+              any questions.'
           </p>
           <table>
               <tr>
@@ -125,8 +125,8 @@
     <!-- end Mixpanel -->
 
     <script>
-    // Hey there! We want to confirm people are finding this tutorial useful, 
-    // so we've included some analytics code to track which sample app you're 
+    // Hey there! We want to confirm people are finding this tutorial useful,
+    // so we've included some analytics code to track which sample app you're
     // running. If lots of people use ruby, for instance, we'll know to
     // make more samples in ruby. Hope you find this code useful!
     var lang = walkthrough.language;
@@ -146,7 +146,7 @@
         tagName: 'div',
         className: 'landing',
         template: _.template($('#landing-view').html()),
-       
+
         render: function() {
           console.log(this.model);
           this.$el.html(this.template(this.model.attributes));

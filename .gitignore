@@ -1,2 +1,8 @@
 .DS_Store
 node_modules
+
+# Ignore logs
+*.log
+
+# Ignore local env files
+.env.local

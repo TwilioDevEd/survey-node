@@ -1,4 +1,4 @@
-var twilio = require('twilio');
+var MessagingResponse = require('twilio').twiml.MessagingResponse;
 var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
 
@@ -6,10 +6,10 @@ var survey = require('../survey_data');
 module.exports = function(request, response) {
     var phone = request.body.From;
     var input = request.body.Body;
-    
+
     // respond with message TwiML content
     function respond(message) {
-        var twiml = new twilio.TwimlResponse();
+        var twiml = new MessagingResponse();
         twiml.message(message);
         response.type('text/xml');
         response.send(twiml.toString());
