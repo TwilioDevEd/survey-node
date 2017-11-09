@@ -8,12 +8,6 @@
 
 Instantly collect structured data from your users with a survey conducted over a voice call or SMS text messages. Learn how to create your own survey in the language and framework of your choice. For a step-by-step tutorial see [twilio docs](https://www.twilio.com/docs/howto/walkthrough/automated-survey/node/express).
 
-## Deploy On Heroku
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/survey-node)
-
-  And, remember to configure Twilio webhooks in the configuration section below.
-
 ## Local development
 
 First you need to install [Node.js](http://nodejs.org/) as well as [MongoDB](https://www.mongodb.org/)
