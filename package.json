@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "bluebird": "^3.4.6",
-    "chai": "^3.5.0",
+    "chai": "^4.2.0",
     "lodash": "^4.16.6",
     "mocha": "^3.1.2",
     "supertest": "^2.0.1",
