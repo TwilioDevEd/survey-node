@@ -35,7 +35,7 @@
     "bluebird": "^3.4.6",
     "chai": "^3.5.0",
     "lodash": "^4.16.6",
-    "mocha": "^3.1.2",
+    "mocha": "^6.2.0",
     "supertest": "^2.0.1",
     "supertest-promised": "^1.0.0",
     "xmldom": "^0.1.22",
