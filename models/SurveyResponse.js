@@ -46,7 +46,7 @@ SurveyResponseSchema.statics.advanceSurvey = function(args, cb) {
         }
 
         // If we have no input, ask the current question again
-        if (!input) return reask();
+        if (input === undefined) return reask();
 
         // Otherwise use the input to answer the current question
         var questionResponse = {};
