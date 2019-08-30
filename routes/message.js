@@ -1,6 +1,7 @@
 var MessagingResponse = require('twilio').twiml.MessagingResponse;
 var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
+var logger = require('tracer').colorConsole();
 
 // Handle SMS submissions
 module.exports = function(request, response) {
@@ -11,6 +12,7 @@ module.exports = function(request, response) {
     function respond(message) {
         var twiml = new MessagingResponse();
         twiml.message(message);
+        logger.debug(twiml.toString());
         response.type('text/xml');
         response.send(twiml.toString());
     }
