@@ -23,22 +23,23 @@
   },
   "homepage": "https://github.com/TwilioDevEd/survey-node",
   "dependencies": {
-    "bluebird": "^3.4.6",
-    "body-parser": "^1.11.0",
-    "express": "^4.11.2",
-    "jade": "^1.9.2",
-    "mongoose": "4.6.6",
-    "morgan": "^1.5.1",
-    "twilio": "3.0.0-rc.16"
+    "bluebird": "^3.5.5",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jade": "^1.11.0",
+    "mongoose": "5.6.11",
+    "morgan": "^1.9.1",
+    "npm-check-updates": "^3.1.21",
+    "tracer": "^1.0.1",
+    "twilio": "3.33.4"
   },
   "devDependencies": {
-    "bluebird": "^3.4.6",
-    "chai": "^3.5.0",
-    "lodash": "^4.16.6",
-    "mocha": "^3.1.2",
-    "supertest": "^2.0.1",
+    "chai": "^4.2.0",
+    "lodash": "^4.17.15",
+    "mocha": "^6.2.0",
+    "supertest": "^4.0.2",
     "supertest-promised": "^1.0.0",
-    "xmldom": "^0.1.22",
-    "xpath": "0.0.23"
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.27"
   }
 }
