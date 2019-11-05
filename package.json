@@ -31,7 +31,7 @@
     "morgan": "^1.9.1",
     "npm-check-updates": "^3.1.21",
     "tracer": "^1.0.1",
-    "twilio": "3.33.4"
+    "twilio": "3.37.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
