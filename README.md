@@ -31,12 +31,10 @@ To run the app locally:
 1. Copy the sample configuration file and edit it to match your configuration
 
    ```bash
-   $ cp .env .env.local
+   $ cp .env.example .env
    ```
    Be sure to set `MONGO_URL`to your local mongo instance uri for example:
    `mongodb://localhost:27017/surveys` where `surveys` is the db name.
-
-   Run `source .env.local` to export the environment variables
 
 1. Run the application
 
