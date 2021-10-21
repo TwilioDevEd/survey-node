@@ -1,3 +1,5 @@
+require('dotenv-safe').config();
+
 module.exports = {
     // HTTP port
     port: process.env.PORT || 3000,

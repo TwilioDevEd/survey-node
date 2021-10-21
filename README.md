@@ -2,7 +2,7 @@
   <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
 </a>
 
-[![Build Status](https://travis-ci.org/TwilioDevEd/survey-node.svg?branch=next-gen)](https://travis-ci.org/TwilioDevEd/survey-node)
+[![Node.js CI](https://github.com/TwilioDevEd/survey-node/actions/workflows/node.js.yml/badge.svg)](https://github.com/TwilioDevEd/survey-node/actions/workflows/node.js.yml)
 
 # Automated Surveys. Powered by Twilio - Node.js/Express
 
