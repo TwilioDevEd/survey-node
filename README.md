@@ -2,7 +2,7 @@
   <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
 </a>
 
-[![Build Status](https://travis-ci.org/TwilioDevEd/survey-node.svg?branch=next-gen)](https://travis-ci.org/TwilioDevEd/survey-node)
+[![Node.js CI](https://github.com/TwilioDevEd/survey-node/actions/workflows/node.js.yml/badge.svg)](https://github.com/TwilioDevEd/survey-node/actions/workflows/node.js.yml)
 
 # Automated Surveys. Powered by Twilio - Node.js/Express
 
@@ -31,12 +31,10 @@ To run the app locally:
 1. Copy the sample configuration file and edit it to match your configuration
 
    ```bash
-   $ cp .env .env.local
+   $ cp .env.example .env
    ```
    Be sure to set `MONGO_URL`to your local mongo instance uri for example:
    `mongodb://localhost:27017/surveys` where `surveys` is the db name.
-
-   Run `source .env.local` to export the environment variables
 
 1. Run the application
 
