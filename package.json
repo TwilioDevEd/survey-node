@@ -30,7 +30,7 @@
     "jade": "^1.11.0",
     "mongoose": "5.6.11",
     "morgan": "^1.9.1",
-    "npm-check-updates": "^3.1.21",
+    "npm-check-updates": "^16.0.3",
     "tracer": "^1.0.1",
     "twilio": "3.33.4"
   },
