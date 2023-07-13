@@ -8,9 +8,9 @@ exports.interview = function(request, response) {
     var input = request.body.RecordingUrl || request.body.Digits;
     var twiml = new VoiceResponse();
 
-    // helper to append a new "Say" verb with alice voice
+    // helper to append a new "Say" verb with Polly.Amy voice
     function say(text) {
-        twiml.say({ voice: 'alice'}, text);
+        twiml.say({ voice: 'Polly.Amy'}, text);
     }
 
     // respond with the current TwiML content
